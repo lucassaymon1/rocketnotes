@@ -1,4 +1,4 @@
-import styled from "styled-component"
+import styled from "styled-components"
 
 export const Container = styled.button`
 
@@ -23,7 +23,6 @@ export const Container = styled.button`
     width: 100%;
     display: flex;
     margin-top: 24px;
-
   }
 
 `
