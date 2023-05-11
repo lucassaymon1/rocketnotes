@@ -5,36 +5,120 @@ import { Section } from "../../components/Section"
 import { Tag } from "../../components/Tag"
 import { ButtonText } from "../../components/ButtonText"
 
+import { useParams, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+
+import { api } from "../../services"
+
 // all components must be written with a capital letter
 export function Details() {
   // A component only returns a single element (can be a single element with many other inside)
+
+  const [data, setData] = useState(null)
+  const params = useParams()
+
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate(-1)
+  }
+
+  function handleLinkTreatment(link) {
+    const linkIncluded = link.includes("https://")
+
+    if (linkIncluded) {
+      return link
+    }
+    else {
+      return `https://${link}`
+    }
+  }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente excluir esta nota?")
+
+    if (confirm) {
+      await api.delete(`/notes/${params.id}`)
+      navigate(-1)
+    }
+
+  }
+
+  useEffect(() => {
+
+    async function fetchNote() {
+      const response = await api.get(`/notes/${params.id}`)
+      setData(response.data)
+
+
+    }
+    fetchNote()
+
+  }, [])
+
+
   return (
     // components properties: can set different properties for the same component
     <Container>
       <Header />
 
-      <main>
-        <Content>
-          <ButtonText title="Excluir nota" />
+      {
+        // the data content may took some time to load after the page reload.
+        // so, to ensure the content will load with the page, the data might be called with "data &&", or else it will bring a null value within data state
+        data &&
+        <main>
+          <Content>
+            <ButtonText
+              title="Excluir nota"
+              onClick={handleRemove}
+            />
 
-          <h1>Introdução ao React</h1>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam architecto optio repudiandae blanditiis aspernatur modi consequuntur eum accusantium, porro nulla odio illum ab fugit! Ad veniam aut tempora? Officia, ab!</p>
+            <h1>{data.title}</h1>
+            <p>{data.description}</p>
 
-          <Section title="Links Úteis">
-            <Links>
-              <li><a href="#">https://www.rocketseat.com.br/</a></li>
-              <li><a href="#">https://www.rocketseat.com.br/</a></li>
-            </Links>
-          </Section>
+            {
+              data.links &&
+              <Section title="Links Úteis">
+                <Links>
+                  {
+                    data.links.map(link => (
 
-          <Section title="Marcadores">
-            <Tag title="express" />
-            <Tag title="nodejs" />
-          </Section>
+                      <li key={String(link.id)}>
+                        <a href={link.url}
+                          target="_blank">{link.url}
+                        </a>
+                      </li>
 
-          <Button title="Voltar" loading={false} />
-        </Content>
-      </main>
+                    ))
+
+                  }
+                </Links>
+              </Section>
+            }
+
+            {
+              data.tags &&
+              <Section title="Marcadores">
+                {
+                  data.tags.map(tag => (
+                    <Tag
+                      key={String(tag.id)}
+                      title={tag.name}
+                    />
+
+                  ))
+                }
+              </Section>
+            }
+
+            <Button
+              title="Voltar"
+              loading={false}
+              onClick={handleBack}
+            />
+          </Content>
+        </main>
+      }
 
     </Container>
   )
