@@ -17,19 +17,23 @@ O repositório para a API criada para essa aplicação se encontra no repositór
 ## Instruções de login
 Para começar a usar a aplicação, é necessário fazer o login com uma conta já existente. Para isso você pode usar a conta de demonstração que notas já existentes:
 
-Email: `user.demo@email.com` / Senha: `123456`
+Email: `user.example@email.com` / Senha: `123456`
 
 Ou se preferir, pode também criar uma nova conta pela pagina de cadastro e acessá-la fazendo login logo em seguida:
 
 ![Rocketnotes-signin](https://github.com/lucassaymon1/rocketnotes/assets/102837549/19b781ea-5682-437b-bd9d-1883c062d233)
 
-![Rocketnotes-login](https://github.com/lucassaymon1/rocketnotes/assets/102837549/00fd04fb-7408-4ade-91cb-458b17cd6b13)
+![Rocketnotes-login](https://github.com/lucassaymon1/rocketnotes/assets/102837549/925078fe-bb0d-4476-804c-88d60f4925f0)
 
 ## Interfaces
 
 ### Página inicial
 
 ![Rocketnotes-home_1](https://github.com/lucassaymon1/rocketnotes/assets/102837549/04cd6a33-2236-4e06-bff0-d89c12a0f7ed)
+
+### Perfil do usuário
+
+![Rocketnotes-profile](https://github.com/lucassaymon1/rocketnotes/assets/102837549/479b0ec5-b955-4764-bd64-b7159da5b344)
 
 ### Detalhes
 
