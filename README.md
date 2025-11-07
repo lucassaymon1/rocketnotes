@@ -49,6 +49,10 @@ Ou se preferir, pode também criar uma nova conta pela pagina de cadastro e aces
 
 O projeto foi desenvolvido utilizando `javascript` como linguagem de programação, além de outras tecnologias como `ReactJS` e `Styled Components` para a parte Frontend e `NodeJS`, `Express` e `SQLite` para o Backend.
 O desenvolvimento desta aplicação contou também com a utilização de conceitos e tecnologias como: 
+* Node.js
+* React
+* SQLite
+* Context API
 * React Router
 * React Rooks
 * Operações CRUD
